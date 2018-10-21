@@ -195,37 +195,32 @@ static void assign()
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
-			return reg;
 		case 'b':
 			left_reg = variable();
 			right_reg =  expressions();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
-			return reg;
 		case 'c':
 			left_reg = variable();
 			right_reg =  expressions();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
-			return reg;
 		case 'd':
 			left_reg = variable();
 			right_reg =  expressions();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
-			return reg;
 		case 'e':
 			left_reg = variable();
 			right_reg =  expressions();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
-			return reg;
 		default:
-			ERROR("Assign error. Current input symbol is %c\n", token)
+			ERROR("Assign error. Current input symbol is %c\n", token);
 }}
 
 static void read()
