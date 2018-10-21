@@ -191,31 +191,31 @@ static void assign()
 	switch(token){
 		case 'a':
 			left_reg = variable();
-			right_reg =  expressions();
+			right_reg =  expr();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
 		case 'b':
 			left_reg = variable();
-			right_reg =  expressions();
+			right_reg =  expr();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
 		case 'c':
 			left_reg = variable();
-			right_reg =  expressions();
+			right_reg =  expr();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
 		case 'd':
 			left_reg = variable();
-			right_reg =  expressions();
+			right_reg =  expr();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
 		case 'e':
 			left_reg = variable();
-			right_reg =  expressions();
+			right_reg =  expr();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
