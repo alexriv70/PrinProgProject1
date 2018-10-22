@@ -242,6 +242,7 @@ static void morestmts()
 	/* YOUR CODE GOES HERE */
 	switch(token){
 		case ';':
+			next_token();
 			stmtlist();
 		default:
 			return;
