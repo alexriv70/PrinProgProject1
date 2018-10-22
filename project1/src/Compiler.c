@@ -91,15 +91,11 @@ static int digit()
 static int variable()
 {
 	/* YOUR CODE GOES HERE */
-	int reg;
-	char tok;
-
+	char tok = token;
 if (!is_identifier(token)) {
 		ERROR("Expected variable\n");
 		exit(EXIT_FAILURE);
 	}
-	reg = next_register();
-	tok = token;
 	next_token();
 	return tok;
 }
@@ -152,32 +148,15 @@ static int expr()
 	case '9':
 		return digit();
 	case 'a':
-		reg = next_register();
-		CodeGen(LOAD, reg, token, EMPTY_FIELD);
-		variable();
-		return reg;
+		return variable();
 	case 'b':
-		reg = next_register();
-		CodeGen(LOAD, reg, token, EMPTY_FIELD);
-		variable();
-		return reg;
+		return variable();
 	case 'c':
-		reg = next_register();
-		CodeGen(LOAD, reg, token, EMPTY_FIELD);
-		variable();
-		return reg;
+		return variable();
 	case 'd':
-		reg;
-		reg = next_register();
-		CodeGen(LOAD, reg, token, EMPTY_FIELD);
-		variable();
-		return reg;
+		return variable();
 	case 'e':
-		reg;
-		reg = next_register();
-		CodeGen(LOAD, reg, token, EMPTY_FIELD);
-		variable();
-		return reg;
+		return variable();
 	default:
 		ERROR("Symbol %c unknown\n", token);
 		exit(EXIT_FAILURE);
@@ -252,9 +231,9 @@ static void stmt()
 	case 'e':
 		assign();
 	case '!':
-		variable();
+		read();
 	case '#':
-		variable();
+		print();
 	}
 }
 
