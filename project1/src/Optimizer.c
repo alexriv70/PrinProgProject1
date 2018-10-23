@@ -38,7 +38,7 @@ int main()
 										DestroyInstructionList(tail);		
 										head=head->next;
 										goto LOOP1;
-									case 'SUBTRACT':
+									case 'SUB':
 										head->opcode = LOADI;
 										head->field1 = reg2-reg1;
 										DestroyInstructionList(body);
@@ -47,7 +47,7 @@ int main()
 										goto LOOP1;
 									case 'MUL':
 										head->opcode = LOADI;
-										head->field = reg2*reg1;
+										head->field1= reg2*reg1;
 										DestroyInstructionList(body);
 										DestroyInstructionList(tail);		
 										head=head->next;
@@ -67,7 +67,7 @@ int main()
 										DestroyInstructionList(tail);		
 										head=head->next;
 										goto LOOP1;
-									case 'SUBTRACT':
+									case 'SUB':
 										head->opcode = LOADI;
 										head->field1 = reg2-reg1;
 										DestroyInstructionList(body);
@@ -76,7 +76,7 @@ int main()
 										goto LOOP1;
 									case 'MUL':
 										head->opcode = LOADI;
-										numload = reg2*reg1;
+										head->field1 = reg2*reg1;
 										DestroyInstructionList(body);
 										DestroyInstructionList(tail);		
 										head=head->next;
