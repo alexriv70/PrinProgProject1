@@ -46,7 +46,7 @@ int main()
 										head=head->next;
 										goto LOOP1;
 									case 'MUL':
-										head->opcode = LOADI
+										head->opcode = LOADI;
 										head->field = reg2*reg1;
 										DestroyInstructionList(body);
 										DestroyInstructionList(tail);		
@@ -75,7 +75,7 @@ int main()
 										head=head->next;
 										goto LOOP1;
 									case 'MUL':
-										head->opcode = LOADI
+										head->opcode = LOADI;
 										numload = reg2*reg1;
 										DestroyInstructionList(body);
 										DestroyInstructionList(tail);		
