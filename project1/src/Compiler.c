@@ -93,7 +93,7 @@ static int variable()
 	/* YOUR CODE GOES HERE */
 	char tok = token;
 if (!is_identifier(token)) {
-		ERROR("Expected variable\n");
+		ERROR("Expected variable, recieved %c\n",token );
 		exit(EXIT_FAILURE);
 	}
 	next_token();
@@ -121,7 +121,7 @@ static int expr()
 		CodeGen(SUB, reg, left_reg, right_reg);
 		return reg;
 	case '*':
-		next_token();
+        next_token();
 		left_reg = expr();
 		right_reg = expr();
 		reg = next_register();
@@ -198,7 +198,7 @@ static void assign()
 			next_token();
 		case 'e':
 			left_reg = variable();
-			next_token();//skipping = sign
+            next_token();//skipping = sign
 			right_reg =  expr();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
@@ -210,14 +210,13 @@ static void assign()
 static void read()
 {
 	CodeGen(READ, token, EMPTY_FIELD, EMPTY_FIELD);
-	next_token();
+    next_token();
 	/* YOUR CODE GOES HERE */
 }
 
 static void print()
 {
-	CodeGen(WRITE,token, EMPTY_FIELD, EMPTY_FIELD),
-	next_token();
+	CodeGen(WRITE,token, EMPTY_FIELD, EMPTY_FIELD);
 	/* YOUR CODE GOES HERE */
 }
 
@@ -225,22 +224,22 @@ static void stmt()
 {
 	/* YOUR CODE GOES HERE */
 	switch(token){
-	case 'a':
-		assign();
-	case 'b':
-		assign();
-	case 'c':
-		assign();
-	case 'd':
-		assign();
-	case 'e':
-		assign();
-	case '!':
-		next_token();
-		read();
-	case '#':
-		next_token();
-		print();
+        case 'a':
+            assign();
+        case 'b':
+            assign();
+        case 'c':
+            assign();
+        case 'd':
+            assign();
+        case 'e':
+            assign();
+        case '!':
+            next_token();
+            read();
+        case '#':
+            next_token();
+            print();
 	}
 }
 
@@ -249,7 +248,7 @@ static void morestmts()
 	/* YOUR CODE GOES HERE */
 	switch(token){
 		case ';':
-			//next_token();
+            //next_token();
 			stmtlist();
 		default:
 			return;
