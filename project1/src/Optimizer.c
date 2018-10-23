@@ -23,31 +23,31 @@ int main()
 		LOOP1: while (head!=lastinstruction(head)){
 			if(head->opcode == LOAD){
 				body = head->next;
-				reg1 = head.field1;
+				reg1 = head->field1;
 				LOOP2: while (body!=lastinstruction(head))
 				{
-					if(body.opcode == LOAD){
+					if(body->opcode == LOAD){
 						tail = body->next;
-						reg2 = body.field1;
+						reg2 = body->field1;
 							if(tail==lastinstruction(head)){
-								switch(tail.opcode){
+								switch(tail->opcode){
 									case'ADD':
-										head.opcode = LOADI;
-										head.field1 = reg2+reg1; 
+										head->opcode = LOADI;
+										head->field1 = reg2+reg1; 
 										DestroyInstructionList(body);
 										DestroyInstructionList(tail);		
 										head=head->next;
 										goto LOOP1;
 									case 'SUBTRACT':
-										head.opcode = LOADI;
-										head.field1 = reg2-reg1;
+										head->opcode = LOADI;
+										head->field1 = reg2-reg1;
 										DestroyInstructionList(body);
 										DestroyInstructionList(tail);		
 										head=head->next;
 										goto LOOP1;
 									case 'MUL':
-										head.opcode = LOADI
-										head.field = reg2*reg1;
+										head->opcode = LOADI
+										head->field = reg2*reg1;
 										DestroyInstructionList(body);
 										DestroyInstructionList(tail);		
 										head=head->next;
@@ -59,23 +59,23 @@ int main()
 							}
 							else {
 								while(tail != lastinstruction(head)){
-									switch(tail.opcode){
+									switch(tail->opcode){
 									case'ADD':
-										head.opcode = LOADI;
-										head.field1 = reg2+reg1; 
+										head->opcode = LOADI;
+										head->field1 = reg2+reg1; 
 										DestroyInstructionList(body);
 										DestroyInstructionList(tail);		
 										head=head->next;
 										goto LOOP1;
 									case 'SUBTRACT':
-										head.opcode = LOADI;
-										head.field1 = reg2-reg1;
+										head->opcode = LOADI;
+										head->field1 = reg2-reg1;
 										DestroyInstructionList(body);
 										DestroyInstructionList(tail);		
 										head=head->next;
 										goto LOOP1;
 									case 'MUL':
-										head.opcode = LOADI
+										head->opcode = LOADI
 										numload = reg2*reg1;
 										DestroyInstructionList(body);
 										DestroyInstructionList(tail);		
