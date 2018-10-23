@@ -170,30 +170,35 @@ static void assign()
 	switch(token){
 		case 'a':
 			left_reg = variable();
+			next_token();//skipping = sign
 			right_reg =  expr();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
 		case 'b':
 			left_reg = variable();
+			next_token();//skipping = sign
 			right_reg =  expr();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
 		case 'c':
 			left_reg = variable();
+			next_token();//skipping = sign
 			right_reg =  expr();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
 		case 'd':
 			left_reg = variable();
+			next_token();//skipping = sign
 			right_reg =  expr();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
 			next_token();
 		case 'e':
 			left_reg = variable();
+			next_token();//skipping = sign
 			right_reg =  expr();
 			reg = next_register();
 			CodeGen(STORE, reg,  left_reg, right_reg);
@@ -231,8 +236,10 @@ static void stmt()
 	case 'e':
 		assign();
 	case '!':
+		next_token();
 		read();
 	case '#':
+		next_token();
 		print();
 	}
 }
