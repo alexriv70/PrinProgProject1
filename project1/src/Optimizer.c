@@ -9,7 +9,7 @@ int main()
 	Instruction *top;
 	Instruction *head;
 	Instruction *body;
-	Instruction *tail
+	Instruction *tail;
 	int reg1;
 	int reg2;
 	head = ReadInstructionList(stdin);
@@ -21,7 +21,7 @@ int main()
 	/* YOUR CODE GOES HERE */
 	if (head) {
 		LOOP1: while (head!=lastinstruction(head)){
-			if(head.opcode == LOAD){
+			if(head->opcode == LOAD){
 				body = head->next;
 				reg1 = head.field1;
 				LOOP2: while (body!=lastinstruction(head))
