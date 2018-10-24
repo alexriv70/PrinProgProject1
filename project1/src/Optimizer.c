@@ -6,101 +6,57 @@
 
 int main()
 {
-	Instruction *top;
 	Instruction *head;
+    head = ReadInstructionList(stdin);
+    Instruction *top;
 	Instruction *body;
 	Instruction *tail;
-	int reg1;
-	int reg2;
-	head = ReadInstructionList(stdin);
+	int val1;
+	int val2;
 	top=head;//top of the list
 	if (!head) {
 		WARNING("No instructions\n");
 		exit(EXIT_FAILURE);
 	}
 	/* YOUR CODE GOES HERE */
-	LOOP1: 
-	while (head!=lastinstruction(head)){
-		if(head->opcode == LOAD){
-			body = head->next;
-			reg1 = head->field1;
-			LOOP2:
-			while (body!=lastinstruction(head))
-			{
-				if(body->opcode == LOAD){
-					tail = body->next;
-					reg2 = body->field1;
-						if(tail==lastinstruction(head)){
-							switch(tail->opcode){
-								case'ADD':
-									head->opcode = LOADI;
-									head->field1 = reg2+reg1; 
-									DestroyInstructionList(body);
-									DestroyInstructionList(tail);		
-									head=head->next;
-									goto LOOP1;
-								case 'SUB':
-									head->opcode = LOADI;
-									head->field1 = reg2-reg1;
-									DestroyInstructionList(body);
-									DestroyInstructionList(tail);		
-									head=head->next;
-									goto LOOP1;
-								case 'MUL':
-									head->opcode = LOADI;
-									head->field1= reg2*reg1;
-									DestroyInstructionList(body);
-									DestroyInstructionList(tail);		
-									head=head->next;
-									goto LOOP1;
-								default:
-									body = body->next;
-									goto LOOP2;
-							}
-						}
-						else {
-							while(tail != lastinstruction(head)){
-								switch(tail->opcode){
-								case'ADD':
-									head->opcode = LOADI;
-									head->field1 = reg2+reg1; 
-									DestroyInstructionList(body);
-									DestroyInstructionList(tail);		
-									head=head->next;
-									goto LOOP1;
-								case 'SUB':
-									head->opcode = LOADI;
-									head->field1 = reg2-reg1;
-									DestroyInstructionList(body);
-									DestroyInstructionList(tail);		
-									head=head->next;
-									goto LOOP1;
-								case 'MUL':
-									head->opcode = LOADI;
-									head->field1 = reg2*reg1;
-									DestroyInstructionList(body);
-									DestroyInstructionList(tail);		
-									head=head->next;
-									goto LOOP1;
-								default:
-									tail = tail->next;
-									goto LOOP2;
-								}
-
-							}
-
-						}
-				}	
-			}
-			goto END;
-		}
-		else{
-			head = head->next;
-			goto LOOP1;
-		}
+	while (top!=NULL){
+		if(top->opcode == LOADI){
+			val1 = top->field2;
+            body = top->next;
+                if(body->opcode == LOADI){
+                    val2 =  body->field2;
+                    tail =  body-> next;
+                        if(  tail->opcode == ADD 
+                          || tail->opcode == SUB
+                          || tail->opcode == MUL){
+                            
+                            if(tail -> field2 == top->field1 && tail->field3 == body->field1){
+                                if(tail->opcode == ADD){
+                                        top->field2 = val1 + val2;
+                                }
+                                else if(tail->opcode == SUB){
+                                        top->field2 = val1 - val2;
+                                }
+                                else if(tail->opcode == MUL){
+                                        top->field2 = val1 * val2;
+                                }
+                                top -> opcode = LOADI;
+                                top -> field1 = tail -> field1;
+                                tail = tail -> next;
+                                top -> next = tail;
+                                tail -> prev = top;
+                            }
+                        }
+		              }
+        }
+        top = top -> next;
 	}
-		
-	END:
-	PrintInstructionList(stdout, top);
+    if(head){
+	PrintInstructionList(stdout, head);
+    DestroyInstructionList(top);
+    DestroyInstructionList(body);
+    DestroyInstructionList(tail);
+    DestroyInstructionList(head);
 	return EXIT_SUCCESS;
+    }
 }
